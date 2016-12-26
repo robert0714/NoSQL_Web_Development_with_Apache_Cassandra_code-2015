@@ -10,5 +10,6 @@
         <module>ch01-hector</module>
         <module>ch02-cql</module>
         <module>ch03-datastax</module>
+        <module>ch09-kundera</module>        
     </modules>
 </project>
