@@ -3,58 +3,60 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>sample</groupId>
-	<artifactId>ch09-kundera</artifactId>
+	<artifactId>ch10-springdata</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>ch09-kundera</name>
+	<name>SpringCassandra</name>
 	<url>http://maven.apache.org</url>
-
+	<repositories>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<cassandra.version>3.1.2</cassandra.version>
 		<java.version>1.7</java.version>
 		<slf4j.version>1.7.6</slf4j.version>
-		<eclipselink.version>2.5.2</eclipselink.version>
-		<kundera.version>3.7</kundera.version>
+		<spring.version>4.2.7.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
-		<!-- <dependency> -->
-		<!-- <groupId>org.eclipse.persistence</groupId> -->
-		<!-- <artifactId>eclipselink</artifactId> -->
-		<!-- <version>${eclipselink.version}</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>com.impetus.kundera.core</groupId> -->
-		<!-- <artifactId>core-parent</artifactId> -->
-		<!-- <version>${kundera.version}</version> -->
-		<!-- </dependency> -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-cassandra -->
 		<dependency>
-			<groupId>com.impetus.kundera.core</groupId>
-			<artifactId>kundera-core</artifactId>
-			<version>${kundera.version}</version>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-cassandra</artifactId>
+			<version>1.4.6.RELEASE</version>
 		</dependency>
 		<dependency>
-			<groupId>com.impetus.kundera.core</groupId>
-			<artifactId>fallback-impl</artifactId>
-			<version>${kundera.version}</version>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>1.12.5.RELEASE</version>
 		</dependency>
 		<dependency>
-			<groupId>com.impetus.kundera.client</groupId>
-			<artifactId>kundera-cassandra</artifactId>
-			<version>${kundera.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>com.impetus.kundera.client</groupId>
-			<artifactId>kundera-cassandra-pelops</artifactId>
-			<version>${kundera.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.impetus.kundera.client</groupId> -->
-<!-- 			<artifactId>kundera-elastic-search</artifactId> -->
-<!-- 			<version>${kundera.version}</version> -->
-<!-- 		</dependency>  -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -69,7 +71,7 @@
 			<groupId>org.apache.directory.studio</groupId>
 			<artifactId>org.apache.commons.pool</artifactId>
 			<version>1.6</version>
-		</dependency> 
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -86,6 +88,15 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
 		</plugins>
